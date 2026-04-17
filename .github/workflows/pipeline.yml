@@ -78,6 +78,15 @@ jobs:
           severity: CRITICAL,HIGH
           exit-code: 0
 
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results
+          path: |
+            .pytest_cache/
+          retention-days: 7
+
   deploy-staging:
     name: Deploy to Staging
     runs-on: ubuntu-latest
